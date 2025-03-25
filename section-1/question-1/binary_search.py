@@ -5,6 +5,7 @@ If the element is not found, return -1
 """
 
 from typing import Literal
+import argparse
 
 
 def check_sorting_order(
@@ -55,12 +56,17 @@ def binary_search(
 
 
 if __name__ == "__main__":
-    sorted_list = [12, 2, 8, 5, 16, 91, 38, 56, 72, 23]
+    # Taking arguments via terminal
+    parser = argparse.ArgumentParser(description='Binary search.')
+    parser.add_argument('list_of_numbers', type=str, help='The list of numbers (it does not need to be sorted).')
+    parser.add_argument('values', type=str, help='The value to search in the list. You can pass more than one')
+    args = parser.parse_args()
 
-    assert binary_search(sorted_list, 56) == 7
-    assert binary_search(sorted_list, 91) == 9
-    assert binary_search(sorted_list, 5) == 1
-    assert binary_search(sorted_list, 50) == -1
-    assert binary_search(sorted_list, 2) == 0
+    # Converting the lists' values to integers
+    list_of_numbers = [int(n) for n in args.list_of_numbers.split(",")]
+    values = [int(v) for v in args.values.split(",")]
 
-    print("All tests passed!")
+    # Printing results
+    for value in values:
+        index = binary_search(list_of_numbers, value)
+        print(f"Index of value {value}: {index}")
