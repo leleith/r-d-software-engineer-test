@@ -18,14 +18,38 @@ Run the code using this command: -->
 # Section 2: SQL and BigQuery
 
 ### Question 1
-You can verify the query in this file: `section-2/question-1/top_five_clients.sql`  
-
-I wrote a test. You can run the test using this command:
-- Windows `py section-2/question-1/test.py`
-- Unix (Mac/Linux) `python3 section-2/question-1/test.py`
+You can verify the query in this file: `section-2/question-1/top_five_clients.sql`
 
 ### Question 2
-*Partitioning* divides the table into smaller tables, based on a column.
+*Partitioning* divides the table into smaller tables, based on a column, usually a date, timestamp or id column. *Clustering* organizes, sort the data into pieces.
+
+```
+-- Example of a partitioned and clustered table for sales data
+
+-- Create a partitioned table by date
+CREATE TABLE sales_data_partitioned
+PARTITION BY DATE(sale_date)
+CLUSTER BY product_category, region
+AS (
+  SELECT 
+    sale_date,
+    product_category,
+    region,
+    total_sales,
+    num_transactions
+  FROM sales_raw_data
+);
+
+-- Query example showing benefits of partitioning and clustering
+SELECT 
+  product_category, 
+  SUM(total_sales) as total_revenue
+FROM sales_data_partitioned
+WHERE sale_date BETWEEN '2023-01-01' AND '2023-01-31'
+  AND region = 'Northeast'
+  AND product_category = 'Electronics'
+GROUP BY product_category;
+```
 
 ---
 
@@ -36,14 +60,24 @@ To run the python app (with numpy and pandas - numpy already comes with pandas):
 
 - build the image using `docker build -t my-python-app -f section-3/question-2/Dockerfile.yml .`
 
-- take the `image_id` using `docker images` ()
+- take the `image_id` using `docker images`
 
-- run the image, creating the container:
-docker run `container_id`
+- creating the container `docker run <image_id>`
 
 ---
 
 # Section 4: ETL and Multithreading
+
+### Question 1
+1 - Some years ago I was working with Pentaho Data Integration. Most clients we (the team) had to connect directly with their databases. So the extraction part was pulling data from the databases, then we transform them (using Pentaho) and then using an API Post method we sent to the company database, in AWS.
+
+2 - Another ETL process I can tell you is one entirely based on AWS: extracting data using DMS, using Lambda or Glue (it depended of the amount) to transform the data and loading into S3
+
+### Question 2
+Run the code using this command:  
+- Windows `py section-4/question-2/multithreading.py`  
+
+- Unix (Mac/Linux) `python3 section-4/question-2/multithreading.py`  
 
 ---
 
