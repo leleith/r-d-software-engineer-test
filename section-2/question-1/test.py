@@ -27,6 +27,6 @@ def transform_dataframe(df: pl.DataFrame) -> pl.DataFrame:
 
 
 if __name__ == "__main__":
-    df = get_dataframe("section-2/question-1/tests/infos.csv")
+    df = get_dataframe("section-2/question-1/infos.csv")
     df_transformed = transform_dataframe(df)
     print(df_transformed)

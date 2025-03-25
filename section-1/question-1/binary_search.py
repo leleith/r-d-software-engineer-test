@@ -35,6 +35,8 @@ def binary_search(
     if check_sorting_order(elements) != "ascending":
         elements = sorted(elements)
     
+    print(f"List of values: {elements}. Value to search: {value}")
+    
     # defining control variables
     left: int = 0
     right: int = len(elements) - 1
@@ -58,8 +60,16 @@ def binary_search(
 if __name__ == "__main__":
     # Taking arguments via terminal
     parser = argparse.ArgumentParser(description='Binary search.')
-    parser.add_argument('list_of_numbers', type=str, help='The list of numbers (it does not need to be sorted).')
-    parser.add_argument('values', type=str, help='The value to search in the list. You can pass more than one')
+    parser.add_argument(
+        '-l', '--list_of_numbers', 
+        type=str, 
+        help='The list of numbers (it does not need to be sorted).'
+    )
+    parser.add_argument(
+        '-v', '--values', 
+        type=str, 
+        help='The value to search in the list. You can pass more than one'
+    )
     args = parser.parse_args()
 
     # Converting the lists' values to integers
@@ -69,4 +79,4 @@ if __name__ == "__main__":
     # Printing results
     for value in values:
         index = binary_search(list_of_numbers, value)
-        print(f"Index of value {value}: {index}")
+        print(f"Index of value {value}: {index}\n")
