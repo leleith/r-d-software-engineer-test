@@ -10,8 +10,11 @@ Example 2: `py section-1/question-1/binary_search.py -l 3,4,1,5 -v 8,4,3`
 Example 1: `python3 section-1/question-1/binary_search.py -l 2,3,5,8,13,21 -v 8`  
 Example 2: `python3 section-1/question-1/binary_search.py -l 3,4,1,5 -v 8,4,3`
 
-<!-- ### Question 2
-Run the code using this command: -->
+### Question 2
+Run the code using this command:
+- Windows `py section-1/question-2/matrices_multiplication.py`  
+
+- Unix (Mac/Linux) `python3 section-1/question-2/matrices_multiplication.py`  
 
 ---
 
@@ -55,6 +58,9 @@ GROUP BY product_category;
 
 # Section 3: AWS and Containerization
 
+### Question 1
+I would develop the Python code and then put inside a Lambda, the main lambda function is usually called lambda_handler (in this case, the function must return a JSON-like text). For the dependencies, I can create a `requirements.txt` inside the project folder. Then I build a zip file, based on a virtual enviroment folder (where I installed the dependencies and contains the lambda function file). After that, I push the package to AWS and set the json file for the API Gateway. All the process can be made inside the AWS console or using AWS CLI.
+
 ### Question 2
 To run the python app (with numpy and pandas - numpy already comes with pandas):
 
@@ -82,3 +88,9 @@ Run the code using this command:
 ---
 
 # Section 5: CI/CD and DevOps
+
+### Question 1
+A CI/CD pipeline automates tests and builds - when a developer push some code to a repository, this triggers the tests and merge the code if the code is ok. As I said, I do not have experience with Jenkins but it may let the process of configuration easier and help with monitoring, sending Slack messages (for example).
+
+### Question 2
+Git mantains a history of changes, prevent more than one person edit the same code track, facilitates the team work by enabling multiple team people work on the same codebase, helps revert errors that were commited, keeps a central codebase.
